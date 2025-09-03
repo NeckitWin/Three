@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const App = () => {
   const [cubeColor, setCubeColor] = useState<string>('cyan');
+  const [figureType, setFigureType] = useState<'cube' | 'triangle' | 'sphere'>('triangle');
 
 
   return (
@@ -20,6 +21,8 @@ const App = () => {
           <Accordion.Content className="flex flex-col gap-1 py-1">
             <Button variant="soft" color="cyan" onClick={() => setCubeColor('cyan')}>Cyan</Button>
             <Button variant="soft" color="crimson" onClick={() => setCubeColor('crimson')}>Crimson</Button>
+            <Button variant="soft" color="indigo" onClick={() => setCubeColor('indigo')}>Indigo</Button>
+            <Button variant="soft" color="green" onClick={() => setCubeColor('green')}>Green</Button>
           </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="figures">
@@ -29,8 +32,9 @@ const App = () => {
             </Accordion.Trigger>
           </Accordion.Header>
           <Accordion.Content className="flex flex-col gap-1 py-1">
-            <Button variant="soft" color="gray">Triangle</Button>
-            <Button variant="soft" color="gray">Square</Button>
+            <Button variant="soft" color="gray" onClick={() => setFigureType('triangle')}>Triangle</Button>
+            <Button variant="soft" color="gray" onClick={() => setFigureType('cube')}>Cube</Button>
+            <Button variant="soft" color="gray" onClick={() => setFigureType('sphere')}>Sphere</Button>
           </Accordion.Content>
         </Accordion.Item>
       </Accordion.Root>
@@ -40,7 +44,7 @@ const App = () => {
           <ambientLight intensity={0.5} />
           <pointLight position={[5, 5, 5]} />
 
-          <Cube color={cubeColor} />
+          <Cube color={cubeColor} type={figureType} />
 
         </Canvas>
       </Box>
